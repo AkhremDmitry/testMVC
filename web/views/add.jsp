@@ -9,8 +9,10 @@
 <html>
 <head>
     <title>Add new user</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
+<body class="w3-light-grey">
+
     <div>
         <%
             if (request.getAttribute("userName")!=null){
@@ -25,19 +27,24 @@
             </div>
 
             <form method="post">
+                <label>Добавление пользователя
+                    <button class="w3-btn w3-hover-light-blue w3-round-large w3-right-align" type="submit">Сохранить </button><br />
+                </label>
                 <label>Name:
                     <input type="text" name="name"><br />
                 </label>
                 <label>Password:
                     <input type="password" name="pass"><br />
                 </label>
-                <button type="submit">Submit</button>
+
             </form>
+
+
         </div>
     </div>
 
     <div>
-        <button onclick="location.href='/'">Back to main</button>
+        <button class="w3-btn w3-hover-pale-red w3-hover-text-red w3-round-large w3-left-align" onclick="location.href='/'">Возврат/Отмена</button>
     </div>
 </body>
 </html>

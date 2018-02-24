@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ListServlet extends HttpServlet {
@@ -17,7 +18,14 @@ public class ListServlet extends HttpServlet {
 //        PrintWriter writer = resp.getWriter();
 //        writer.println("Method List fron ListServlet");
         ModelSingl modelSingl = ModelSingl.getInstance();
-        List<String> names = modelSingl.list();
+        List<String> names = null;
+        try {
+            names = modelSingl.getUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         req.setAttribute("userNames", names);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");

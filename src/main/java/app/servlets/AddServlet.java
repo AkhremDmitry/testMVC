@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 public class AddServlet extends HttpServlet {
     @Override
@@ -26,7 +27,13 @@ public class AddServlet extends HttpServlet {
         String password = req.getParameter("pass");
         User user = new User(name, password);
         ModelSingl modelSingl = ModelSingl.getInstance();
-        modelSingl.add(user);
+        try {
+            modelSingl.addUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         req.setAttribute("userName", name);
         doGet(req,resp);
